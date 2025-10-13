@@ -11,5 +11,6 @@ urlpatterns = [
 '''
 
 urlpatterns = [
-    path("<mese>",views.challengeDelMese)
+    path("<int:mese>",views.challengeDelMeseByNumber),
+    path("<str:mese>",views.challengeDelMese, name="usato-per-riderect")
 ]

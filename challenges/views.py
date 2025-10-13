@@ -1,25 +1,40 @@
 from django.shortcuts import render
-from django.http import HttpResponse, HttpResponseNotFound
+from django.http import HttpResponse, HttpResponseNotFound, HttpResponseRedirect
+from django.urls import reverse
 
 # Create your views here.
 
-'''
-def gennaioFunzione(request):
-      return HttpResponse("siamo su gennaio")
+dizionario = {
+    "gennaio" : "siamo a gennaio",
+    "febbraio" : "siamo a febbraio",
+    "marzo" : "siamo a marzo",
+    "aprile" : "siamo ad aprile",
+    "maggio" : "siamo a maggio",
+    "giugno" : "siamo a giugno",
+    "luglio" : "siamo a luglio",
+    "agosto" : "siamo ad agosto",
+    "settembre" : "siamo a settembre",
+    "ottobre" : "siamo a ottobre",
+    "novembre" : "siamo a novembre",
+    "dicembre" : "siamo a dicembre",
+}
 
-def febbraioFunzione(request):
-      return HttpResponse("siamo su febbraio")
-'''
+
+def challengeDelMeseByNumber(request, mese):
+    listaMesi = list(dizionario.keys())
+
+    if mese > 12 or mese < 1:
+        return HttpResponseNotFound("Mese non valido")
+
+    redirectMese = listaMesi[mese - 1]
+    redirectPath = reverse("usato-per-riderect",args=[redirectMese])
+    return HttpResponseRedirect(redirectPath)
+
 
 def challengeDelMese(request, mese):
-    variabileTesto=None
 
-    if mese == "gennaio":
-        variabileTesto="Siamo a Gennaio"
-    elif mese == "febbraio":
-        variabileTesto="Siamo a Febbraio"
-    elif mese =="marzo":
-        variabileTesto="Siamo a Marzo"
-    else:
-        return HttpResponseNotFound("Questo mese non esiste")
-    return HttpResponse(variabileTesto)
+    try:
+        variabileTesto=dizionario[mese]
+        return HttpResponse(variabileTesto)
+    except:
+        return HttpResponseNotFound("Mese non valido")
