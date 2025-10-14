@@ -35,6 +35,7 @@ def challengeDelMese(request, mese):
 
     try:
         variabileTesto=dizionario[mese]
-        return HttpResponse(variabileTesto)
+        textToSentInResponse=f"<h1>{variabileTesto}</h1>"
+        return HttpResponse(textToSentInResponse)
     except:
-        return HttpResponseNotFound("Mese non valido")
+        return HttpResponseNotFound("<h1 style='color:red'>Mese non valido</h1>")
