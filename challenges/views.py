@@ -19,6 +19,17 @@ dizionario = {
     "dicembre" : "siamo a dicembre",
 }
 
+def paginaLista(request):
+    listaMesi=list(dizionario.keys())
+    listItems=""
+    for mese in listaMesi:
+        meseCapitalizzato=mese.capitalize()
+        meseRedirect=reverse("usato-per-riderect",args=[mese])
+        listItems+=f"<li><a href=\"{meseRedirect} \" /> {meseCapitalizzato}</li>"
+    textToReturn=f"<ul>{listItems}</ul>"
+    return HttpResponse(textToReturn)
+
+
 
 def challengeDelMeseByNumber(request, mese):
     listaMesi = list(dizionario.keys())
