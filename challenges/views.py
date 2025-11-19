@@ -1,6 +1,7 @@
 from django.shortcuts import render
 from django.http import HttpResponse, HttpResponseNotFound, HttpResponseRedirect
 from django.urls import reverse
+from django.template.loader import render_to_string
 
 # Create your views here.
 
@@ -46,7 +47,8 @@ def challengeDelMese(request, mese):
 
     try:
         variabileTesto=dizionario[mese]
-        textToSentInResponse=f"<h1>{variabileTesto}</h1>"
+        '''textToSentInResponse=f"<h1>{variabileTesto}</h1>" '''
+        textToSentInResponse=render_to_string("challenges/challenge.html")
         return HttpResponse(textToSentInResponse)
     except:
         return HttpResponseNotFound("<h1 style='color:red'>Mese non valido</h1>")
