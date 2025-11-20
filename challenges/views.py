@@ -6,19 +6,20 @@ from django.template.loader import render_to_string
 # Create your views here.
 
 dizionario = {
-    "gennaio" : "siamo a gennaio",
-    "febbraio" : "siamo a febbraio",
-    "marzo" : "siamo a marzo",
-    "aprile" : "siamo ad aprile",
-    "maggio" : "siamo a maggio",
-    "giugno" : "siamo a giugno",
-    "luglio" : "siamo a luglio",
-    "agosto" : "siamo ad agosto",
-    "settembre" : "siamo a settembre",
-    "ottobre" : "siamo a ottobre",
-    "novembre" : "siamo a novembre",
-    "dicembre" : "siamo a dicembre",
+    "january": "Run for 20 minutes every day to boost your stamina and mood.",
+    "february": "Drink at least 2 liters of water every day throughout the month.",
+    "march": "Add two servings of fresh vegetables to your meals every day.",
+    "april": "Complete a total of 30 km of walking by the end of the month.",
+    "may": "Do 15 minutes of stretching every morning to improve flexibility.",
+    "june": "Try a new outdoor activity (cycling, hiking, swimming) at least twice a week.",
+    "july": "Cut added sugars and replace them with fresh fruit.",
+    "august": "Meditate for 10 minutes every day to improve focus and relaxation.",
+    "september": "Walk at least 8,000 steps per day.",
+    "october": "Avoid processed foods for the whole month and choose fresh, whole foods instead.",
+    "november": "Do strength training three times a week with bodyweight exercises (squats, planks, push-ups).",
+    "december": "Get at least 7 hours of sleep every night throughout the month.",
 }
+
 
 def paginaLista(request):
     listaMesi=list(dizionario.keys())
@@ -47,8 +48,10 @@ def challengeDelMese(request, mese):
 
     try:
         variabileTesto=dizionario[mese]
-        '''textToSentInResponse=f"<h1>{variabileTesto}</h1>" '''
-        textToSentInResponse=render_to_string("challenges/challenge.html")
-        return HttpResponse(textToSentInResponse)
+        '''textToSentInResponse=f"<h1>{variabileTesto}</h1>" 
+        textToSentInResponse=render_to_string("challenges/challenge.html") 
+        return HttpResponse(textToSentInResponse) '''
+        
+        return render(request, "challenges/challenge.html",{"title":mese.capitalize(), "text":variabileTesto})
     except:
         return HttpResponseNotFound("<h1 style='color:red'>Mese non valido</h1>")
