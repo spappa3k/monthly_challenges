@@ -4,12 +4,16 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Monthly Challenge</title>
+    <title>All Challenges</title>
 </head>
 
 <body>
-    <h1>{{title | title}} challenges:</h1>
-    <h2>{{text}}</h2>
+   <ul>
+   {% for mese in mesi%}
+    <li><a href={% url "usato-per-riderect" mese %}>{{ mese|title }}</a>
+</li>
+    {% endfor %}
+   </ul>
 </body>
 
 </html>

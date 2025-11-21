@@ -20,6 +20,10 @@ dizionario = {
     "december": "Get at least 7 hours of sleep every night throughout the month.",
 }
 
+def index(request):
+    mesi=list(dizionario.keys())
+    return render(request,"challenges/index.html",{"mesi":mesi})
+
 
 def paginaLista(request):
     listaMesi=list(dizionario.keys())
@@ -52,6 +56,6 @@ def challengeDelMese(request, mese):
         textToSentInResponse=render_to_string("challenges/challenge.html") 
         return HttpResponse(textToSentInResponse) '''
         
-        return render(request, "challenges/challenge.html",{"title":mese.capitalize(), "text":variabileTesto})
+        return render(request, "challenges/challenge.html",{"title":mese, "text":variabileTesto})
     except:
         return HttpResponseNotFound("<h1 style='color:red'>Mese non valido</h1>")
