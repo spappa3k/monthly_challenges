@@ -17,7 +17,7 @@ dizionario = {
     "september": "Walk at least 8,000 steps per day.",
     "october": "Avoid processed foods for the whole month and choose fresh, whole foods instead.",
     "november": "Do strength training three times a week with bodyweight exercises (squats, planks, push-ups).",
-    "december": "Get at least 7 hours of sleep every night throughout the month.",
+    "december": None,
 }
 
 def index(request):

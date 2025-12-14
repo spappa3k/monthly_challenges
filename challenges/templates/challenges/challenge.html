@@ -9,7 +9,11 @@
 
 <body>
     <h1>{{title | title}} challenges:</h1>
+   {% if text is not None %}
     <h2>{{text}}</h2>
+    {% else %}
+    <h2>It's christmas time, go and eat Panettone</h2>
+    {% endif %}
 </body>
 
 </html>
